@@ -1,7 +1,12 @@
 📊 E-Commerce Data Engineering Pipeline
 🚀 Project Overview
 
-This project implements a complete end-to-end batch ETL data engineering pipeline for processing large-scale e-commerce sales data and generating business analytics dashboards.
+This project demonstrates a production-style end-to-end batch ETL data engineering pipeline built to process and analyze large-scale e-commerce sales data.
+
+It simulates a real-world analytics workflow used in retail and marketplace businesses.
+
+
+
 
 The pipeline:
 
