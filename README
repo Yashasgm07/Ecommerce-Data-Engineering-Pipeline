@@ -7,6 +7,19 @@ The pipeline extracts raw CSV sales data, performs data cleaning and business-le
 
 ---
 
+📦 Ecommerce-Data-Engineering-Pipeline
+ ┣ 📂 data
+ ┃  ┗ README.md   ← tells user to add raw_sales.csv
+ ┣ 📂 etl
+ ┃  ┣ extract.py
+ ┃  ┣ transform.py
+ ┃  ┣ load.py
+ ┃  ┗ run_pipeline.py
+ ┣ dashboard.py
+ ┣ requirements.txt
+ ┣ .gitignore
+ ┗ README.md
+
 ## 🏗 Architecture
 
 Raw CSV  
