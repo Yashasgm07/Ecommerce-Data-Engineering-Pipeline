@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.env
+logs/
+*.log
+data/raw_sales.csv
+data/cleaned_sales.csv

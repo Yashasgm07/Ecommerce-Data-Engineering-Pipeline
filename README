@@ -1,0 +1,116 @@
+# 📊 E-Commerce Data Engineering Pipeline
+
+## 🚀 Overview
+This project implements an end-to-end batch ETL pipeline for processing e-commerce sales data and generating business analytics dashboards.
+
+The pipeline extracts raw CSV sales data, performs data cleaning and business-level transformations, loads the processed data into MySQL, and visualizes KPIs using Streamlit.
+
+---
+
+## 🏗 Architecture
+
+Raw CSV  
+↓  
+Extract (Pandas)  
+↓  
+Transform (Data Cleaning + Business Logic)  
+↓  
+Quality Checks  
+↓  
+Load (MySQL Warehouse)  
+↓  
+Analytics Dashboard (Streamlit)
+
+---
+
+## 🔧 Features
+
+- Modular ETL architecture (extract, transform, load)
+- Data quality checks
+- Business status normalization (Delivered, In Transit, Cancelled, Returned, Pending)
+- Incremental load using ON DUPLICATE KEY UPDATE
+- MySQL indexing for performance
+- Interactive Streamlit dashboard
+- KPI Metrics:
+  - Total Revenue
+  - Total Orders
+  - B2B Orders
+  - Cancellation Rate
+  - Average Order Value (AOV)
+  - Fulfilment Revenue Split
+  - Revenue by State
+  - Monthly Revenue Trend
+  - Order Status Distribution
+
+---
+
+## 🗄 Database Schema
+
+Table: sales_data
+
+Key Columns:
+- order_id (Primary Key)
+- order_date
+- amount
+- business_status
+- ship_state
+- fulfilment
+- b2b
+
+---
+
+## ▶️ How to Run
+
+1. Install dependencies:
+
+pip install -r requirements.txt
+
+
+2. Set database password:
+
+
+set DB_PASSWORD=your_password
+
+
+3. Run ETL pipeline:
+
+
+cd etl
+python run_pipeline.py
+
+
+4. Start dashboard:
+
+
+streamlit run dashboard.py
+
+
+---
+
+## 📊 Business Insights
+
+- ~14% cancellation rate
+- ~1.7% return rate
+- Revenue concentration by state
+- Fulfilment-level revenue analysis
+- Order lifecycle distribution
+
+---
+
+## 🛠 Tech Stack
+
+- Python
+- Pandas
+- MySQL
+- SQLAlchemy
+- Streamlit
+- Logging
+
+---
+
+## 📌 Future Improvements
+
+- Add Airflow scheduling
+- Dockerize pipeline
+- Replace Pandas with Spark for large-scale data
+- Deploy dashboard to cloud
