@@ -1,17 +1,22 @@
 # Data Folder
 
-This folder is intended to store the raw and cleaned datasets.
+This folder is intended to store the raw dataset required to run the pipeline.
 
-⚠ The dataset is not included in this repository due to size constraints.
+⚠️ The dataset is not included in this repository due to size constraints.
 
-To run the project:
+## Download Dataset
 
-1. Download the dataset manually.
-2. Place the raw CSV file inside this folder as:
+Download the dataset from Kaggle:
 
-   raw_sales.csv
+🔗 https://www.kaggle.com/datasets/thedevastator/unlock-profits-with-e-commerce-sales-data
 
-Example structure:
+## How to Use
+
+1. Download the CSV file from Kaggle.
+2. Rename it to: `raw_sales.csv`
+3. Place it in this folder.
+
+Final structure:
 
 data/
- └── raw_sales.csv
+└── raw_sales.csv
