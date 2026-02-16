@@ -1,140 +1,221 @@
-# 📊 E-Commerce Data Engineering Pipeline
+📊 E-Commerce Data Engineering Pipeline
+🚀 Project Overview
 
-## 🚀 Overview
-This project implements an end-to-end batch ETL pipeline for processing e-commerce sales data and generating business analytics dashboards.
+This project implements a complete end-to-end batch ETL data engineering pipeline for processing large-scale e-commerce sales data and generating business analytics dashboards.
 
-The pipeline extracts raw CSV sales data, performs data cleaning and business-level transformations, loads the processed data into MySQL, and visualizes KPIs using Streamlit.
+The pipeline:
 
----
+Extracts raw CSV sales data
 
-📦 Ecommerce-Data-Engineering-Pipeline
- ┣ 📂 data
- ┃  ┗ README.md   ← tells user to add raw_sales.csv
- ┣ 📂 etl
- ┃  ┣ extract.py
- ┃  ┣ transform.py
- ┃  ┣ load.py
- ┃  ┗ run_pipeline.py
- ┣ dashboard.py
- ┣ requirements.txt
- ┣ .gitignore
- ┗ README.md
+Cleans and standardizes data using business rules
 
-## 🏗 Architecture
+Performs data quality validation
 
-Raw CSV  
-↓  
-Extract (Pandas)  
-↓  
-Transform (Data Cleaning + Business Logic)  
-↓  
-Quality Checks  
-↓  
-Load (MySQL Warehouse)  
-↓  
-Analytics Dashboard (Streamlit)
+Loads transformed data into a MySQL data warehouse
 
----
+Visualizes KPIs using an interactive Streamlit dashboard
 
-## 🔧 Features
+The system processes 68,000+ sales records and produces business-level insights including revenue trends, fulfillment performance, and order lifecycle distribution.
 
-- Modular ETL architecture (extract, transform, load)
-- Data quality checks
-- Business status normalization (Delivered, In Transit, Cancelled, Returned, Pending)
-- Incremental load using ON DUPLICATE KEY UPDATE
-- MySQL indexing for performance
-- Interactive Streamlit dashboard
-- KPI Metrics:
-  - Total Revenue
-  - Total Orders
-  - B2B Orders
-  - Cancellation Rate
-  - Average Order Value (AOV)
-  - Fulfilment Revenue Split
-  - Revenue by State
-  - Monthly Revenue Trend
-  - Order Status Distribution
+🏗️ Architecture
+Raw CSV Dataset
+        ↓
+Extract Layer (Pandas)
+        ↓
+Transform Layer (Cleaning + Business Logic)
+        ↓
+Data Quality Checks
+        ↓
+Load Layer (MySQL Data Warehouse)
+        ↓
+Analytics Layer (Streamlit Dashboard)
 
----
+📁 Project Structure
+Ecommerce-Data-Engineering-Pipeline
+│
+├── Data/
+│   └── README.md          # Instructions to add dataset
+│
+├── etl/
+│   ├── extract.py         # Data extraction logic
+│   ├── transform.py       # Cleaning + business transformation
+│   ├── load.py            # MySQL loading (incremental logic)
+│   └── run_pipeline.py    # ETL pipeline runner
+│
+├── dashboard.py           # Streamlit analytics dashboard
+├── requirements.txt
+├── .gitignore
+└── README.md
 
-## 🗄 Database Schema
+🔧 Key Features
+✅ Modular ETL Design
 
+Separate extract, transform, and load components for maintainability and scalability.
+
+✅ Data Quality Checks
+
+Duplicate removal
+
+Null handling
+
+Negative revenue filtering
+
+Date validation
+
+✅ Business Status Normalization
+
+Raw order statuses are standardized into:
+
+Delivered
+
+In Transit
+
+Cancelled
+
+Returned
+
+Pending
+
+This enables clean business-level analytics.
+
+✅ Incremental Loading
+
+Implements:
+
+ON DUPLICATE KEY UPDATE
+
+
+Ensures:
+
+No duplicate inserts
+
+Idempotent pipeline runs
+
+Safe reprocessing
+
+✅ Optimized MySQL Performance
+
+Primary key indexing on order_id
+
+Aggregation-ready schema
+
+✅ Interactive Dashboard KPIs
+
+💰 Total Revenue
+
+📦 Total Orders
+
+🏢 B2B Orders
+
+❌ Cancellation Rate
+
+🛒 Average Order Value (AOV)
+
+🚚 Fulfillment Revenue Split
+
+📍 Revenue by State
+
+📈 Monthly Revenue Trend
+
+📦 Order Lifecycle Distribution
+
+🗄 Database Schema
 Table: sales_data
+Column	Description
+order_id	Primary Key
+order_date	Order date
+amount	Revenue per record
+business_status	Normalized order lifecycle
+ship_state	Shipping state
+fulfilment	Amazon / Merchant
+b2b	B2B flag
+📂 Dataset
 
-Key Columns:
-- order_id (Primary Key)
-- order_date
-- amount
-- business_status
-- ship_state
-- fulfilment
-- b2b
+The dataset is not included in this repository due to size constraints.
 
----
+You can download it from Kaggle:
 
-## 📂 Dataset
+👉 https://www.kaggle.com/datasets/thedevastator/unlock-profits-with-e-commerce-sales-data
 
-The dataset is not included in this repository due to size limitations.
+Setup Instructions
 
-To run the project:
+Download the dataset from Kaggle.
 
-1. Download the dataset.
-2. Place the file inside the `data/` folder as:
-   data/raw_sales.csv
+Rename the file to:
+
+raw_sales.csv
 
 
-## ▶️ How to Run
+Place it inside the Data/ folder:
 
-1. Install dependencies:
+Data/raw_sales.csv
 
+▶️ How to Run the Project
+1️⃣ Install Dependencies
 pip install -r requirements.txt
 
-
-2. Set database password:
-
-
-set DB_PASSWORD=your_password
+2️⃣ Set Environment Variable (Windows)
+set DB_PASSWORD=your_mysql_password
 
 
-3. Run ETL pipeline:
+(Mac/Linux)
 
+export DB_PASSWORD=your_mysql_password
 
+3️⃣ Run ETL Pipeline
 cd etl
 python run_pipeline.py
 
-
-4. Start dashboard:
-
-
+4️⃣ Start Dashboard
 streamlit run dashboard.py
 
 
----
+Then open:
 
-## 📊 Business Insights
+http://localhost:8501
 
-- ~14% cancellation rate
-- ~1.7% return rate
-- Revenue concentration by state
-- Fulfilment-level revenue analysis
-- Order lifecycle distribution
+📊 Business Insights Generated
 
----
+From the dataset:
 
-## 🛠 Tech Stack
+~14% cancellation rate
 
-- Python
-- Pandas
-- MySQL
-- SQLAlchemy
-- Streamlit
-- Logging
+~1.7% return rate
 
----
+Strong revenue concentration across specific states
 
-## 📌 Future Improvements
+Significant revenue split between Amazon and Merchant fulfillment
 
-- Add Airflow scheduling
-- Dockerize pipeline
-- Replace Pandas with Spark for large-scale data
-- Deploy dashboard to cloud
+Clear order lifecycle segmentation (In Transit, Delivered, Returned, etc.)
+
+🛠 Tech Stack
+
+Python
+
+Pandas
+
+MySQL
+
+SQLAlchemy
+
+Streamlit
+
+Logging
+
+Modular ETL Architecture
+
+📈 Future Improvements
+
+Add Apache Airflow scheduling
+
+Dockerize the pipeline
+
+Replace Pandas with PySpark for large-scale processing
+
+Deploy dashboard to cloud (AWS/GCP/Azure)
+
+Add CI/CD workflow
+
+👨‍💻 Author
+
+Yashas G M
