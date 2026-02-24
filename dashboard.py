@@ -12,7 +12,7 @@ st.set_page_config(page_title="E-Commerce Analytics", layout="wide")
 # Database Connection
 # -------------------------------
 engine = create_engine(
-    f"mysql+pymysql://root:{os.getenv('DB_PASSWORD')}@localhost/ecommerce_pipeline"
+    f"mysql+pymysql://root:{os.getenv('DB_PASSWORD')}@mysql-etl/ecommerce_pipeline"
 )
 
 
