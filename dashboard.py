@@ -17,7 +17,7 @@ st.set_page_config(page_title="E-Commerce Analytics", layout="wide")
 password = urllib.parse.quote_plus(os.getenv("DB_PASSWORD"))
 
 engine = create_engine(
-    f"mysql+pymysql://root:{password}@mysql/mom_pop_db"
+    f"mysql+pymysql://root:{password}@mysql/ecommerce_pipeline"
 )
 
 @st.cache_data
@@ -39,8 +39,8 @@ FROM sales_data;
 
 date_range = fetch_data(date_range_query)
 
-min_date = date_range["min_date"][0]
-max_date = date_range["max_date"][0]
+min_date = pd.to_datetime(date_range["min_date"][0]).date()
+max_date = pd.to_datetime(date_range["max_date"][0]).date()
 
 selected_dates = st.sidebar.date_input(
     "Select Date Range",
