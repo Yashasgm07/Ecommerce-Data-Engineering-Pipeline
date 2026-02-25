@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import os
+import urllib.parse
 from sqlalchemy import create_engine
 
 # -------------------------------
@@ -11,8 +12,12 @@ st.set_page_config(page_title="E-Commerce Analytics", layout="wide")
 # -------------------------------
 # Database Connection
 # -------------------------------
+
+
+password = urllib.parse.quote_plus(os.getenv("DB_PASSWORD"))
+
 engine = create_engine(
-    f"mysql+pymysql://root:{os.getenv('DB_PASSWORD')}@mysql/mom_pop_db"
+    f"mysql+pymysql://root:{password}@mysql/mom_pop_db"
 )
 
 @st.cache_data
