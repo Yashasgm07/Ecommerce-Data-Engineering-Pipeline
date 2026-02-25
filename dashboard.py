@@ -39,8 +39,18 @@ FROM sales_data;
 
 date_range = fetch_data(date_range_query)
 
-min_date = pd.to_datetime(date_range["min_date"][0]).date()
-max_date = pd.to_datetime(date_range["max_date"][0]).date()
+# Safe conversion
+min_date_val = date_range["min_date"][0]
+max_date_val = date_range["max_date"][0]
+
+# If DB empty fallback
+if pd.isna(min_date_val) or pd.isna(max_date_val):
+    from datetime import date
+    min_date = date.today()
+    max_date = date.today()
+else:
+    min_date = pd.to_datetime(min_date_val).date()
+    max_date = pd.to_datetime(max_date_val).date()
 
 selected_dates = st.sidebar.date_input(
     "Select Date Range",
