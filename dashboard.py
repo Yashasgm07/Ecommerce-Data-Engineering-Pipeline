@@ -12,9 +12,8 @@ st.set_page_config(page_title="E-Commerce Analytics", layout="wide")
 # Database Connection
 # -------------------------------
 engine = create_engine(
-    f"mysql+pymysql://root:{os.getenv('DB_PASSWORD')}@mysql-86d74fc848-m4fxk.mysql/ecommerce_pipeline"
+    f"mysql+pymysql://root:{os.getenv('DB_PASSWORD')}@mysql/mom_pop_db"
 )
-
 
 @st.cache_data
 def fetch_data(query):
