@@ -1,0 +1,21 @@
+---
+- name: Deploy Ecommerce App Container
+  hosts: localhost
+  become: false
+
+  tasks:
+
+    - name: Pull docker image
+      shell: docker pull yashas07/ecommerce-etl:latest
+
+    - name: Stop existing container
+      shell: docker rm -f ecommerce || true
+
+    - name: Run container
+      shell: |
+        docker run -d \
+        --name ecommerce \
+        -p 8502:8501 \
+        --network etl-net \
+        -e DB_PASSWORD=root \
+        yashas07/ecommerce-etl:latest
