@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ecommerce-app
+  labels:
+    app: ecommerce
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ecommerce
+  template:
+    metadata:
+      labels:
+        app: ecommerce
+    spec:
+      containers:
+      - name: ecommerce-container
+        image: yashas07/ecommerce-etl:latest
+        ports:
+        - containerPort: 8501
+        env:
+        - name: DB_PASSWORD
+          value: "root"
